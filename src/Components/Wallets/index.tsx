@@ -2,17 +2,11 @@ import List from '@mui/material/List';
 
 import Wallet from '../Wallet';
 
-const items = [...Array(5)].map((_, i) => ({
-  address: `eth_${Math.floor(Math.random() * 1000000000000)}`,
-  ballance: Math.random(),
-  master: i === 0 ? true : false,
-  disconnected: i === 4 ? true : false,
-}));
-
-export default function Wallets() {
-  return <div style={{ width: 400 }}>
+export default function Wallets({ wallets, toMaster, disconnect }) {
+  return wallets.length ? <div style={{ width: 540 }}>
+    <h3>Wallets</h3>
     <List>
-      {items.map((props) => <Wallet {...props} />)}
+      {wallets.map((props) => <Wallet {...props} toMaster={toMaster} disconnect={disconnect} />)}
     </List>
-  </div>
+  </div> : null
 }
